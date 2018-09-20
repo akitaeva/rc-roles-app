@@ -1,0 +1,49 @@
+<div *ngIf="theActualUser.username">
+  User : {{theActualUser | json }}
+</div>
+<button (click)="logMeOut()">Log Out</button>
+
+
+<h2>Registration Form</h2>
+
+
+<form (submit)="tryRegister()">
+<label>First Name</label>
+<input [(ngModel)]="registerUser.firtsName" name="firtsName" type="text">
+<br>
+<label>Last Name</label>
+<input [(ngModel)]="registerUser.lastName"  name="lastName" type="text">
+<br>
+<label>Email</label>
+<input [(ngModel)]="registerUser.email"  name="email" type="text">
+<br>
+
+
+<fieldset >
+  <legend>Select User's Role</legend>
+
+  <div>
+      <input type="radio" id="it" 
+             name="role" value="it" checked/>
+      <label for="it">IT</label>
+  </div>
+
+  <div>
+      <input type="radio" id="trader" 
+             name="role" value="trader" />
+      <label for="trader">Trader</label>
+  </div>
+
+</fieldset>
+<br>
+
+<button>Next</button>
+</form>
+
+<hr>
+
+
+
+<div *ngIf="theError">
+  Error: {{theError}}
+</div>
