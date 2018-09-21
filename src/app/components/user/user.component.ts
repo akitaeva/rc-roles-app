@@ -25,6 +25,7 @@ export class UserComponent implements OnInit {
   availableRoles:any;
   theError:any;
   show: boolean = false;
+  tempRoles:any;
 
   constructor(private authService: AuthService,
               private http: Http) { }
@@ -51,7 +52,8 @@ review() {
   ngOnInit(): void {
     setTimeout(() => {
     this.availableRoles = this.authService.getRoles()
-   .map(res => new CheckboxItem(res.roleId, res.name));
+   .map(res => {this.tempRoles = res;
+     new CheckboxItem(this.tempRoles.roleId, this.tempRoles.name)});
   }, 100);
    console.log("availableRoles:  ",  this.availableRoles)
   }
