@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../services/auth.service';
+import {Component, OnInit } from '@angular/core';
+import {AuthService} from '../../services/auth.service';
 import {FormsModule} from '@angular/forms'
-import { Subscriber } from '../../../node_modules/rxjs';
+import { Subscriber } from '../../../../node_modules/rxjs';
 import { Http } from '@angular/http';
 
 @Component({
@@ -43,9 +43,12 @@ review() {
     
 }
 
+
   ngOnInit() {
    this.availableRoles = this.authService.getRoles();
+  
    console.log("availableRoles:  ",  this.availableRoles)
   }
 
 }
+

@@ -6,7 +6,12 @@ const roles:Object[] = [
            {
                "roleId": 2,
                "name" : 'trader'
-           }
+           },
+           {
+              "roleId": 3,
+              "name" : 'accountant'
+           },
+
  ]
 
  export default roles;
