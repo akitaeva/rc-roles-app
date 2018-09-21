@@ -11,45 +11,41 @@ import { Http } from '@angular/http';
 })
 export class UserComponent implements OnInit {
 
-  registerUser:any = {};
-
-  theActualUser :any = {};
-
-  theError:any;
+  registerUser:any = {
+    firstName: '',
+    lasttName: '',
+    email: '',
+    roles: []
+  };
   
+  availableRoles:any;
+  theError:any;
+  show: boolean = false;
 
   constructor(private authService: AuthService,
               private http: Http) { }
 
- tryToSignUp() {
+// tryRegister() {
+//    this.authService.register(this.registerUser)
+//    .subscribe(
 
-  // console.log(this.signUpUser)
+//     );
+//  }
  
-   this.authService.register(this.registerUser)
-   .subscribe(
-     res => {this.successCallback(res)},
-     error => {this.errorCallback(error)}
-    );
- }
- 
-getRoles() {
-  return this.http.get('http://demo1224749.mockable.io/roles')
-    .map((res) => res.json());
+ firstPhase(userInfo){
+  console.log('userinfo: ', userInfo)
+  this.registerUser = userInfo;
+  this.show = !this.show;
 }
 
-successCallback(userObject) {
-  this.theActualUser = userObject;
-  this.theError = null;
-
-}
-
-errorCallback(errorObject) {
-  this.theError = errorObject;
-  this.theActualUser = {};
+review() {
+  console.log('registerUser: ', this.registerUser)
+    
 }
 
   ngOnInit() {
-   
+   this.availableRoles = this.authService.getRoles();
+   console.log("availableRoles:  ",  this.availableRoles)
   }
 
 }

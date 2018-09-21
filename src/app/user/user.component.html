@@ -1,43 +1,49 @@
-<div *ngIf="theActualUser.username">
-  User : {{theActualUser | json }}
-</div>
-<button (click)="logMeOut()">Log Out</button>
+<h2>New User Registration Form</h2>
 
 
-<h2>Registration Form</h2>
+<form (submit)="review()">
+
+ <div [hidden]="show">
+    <label>First Name</label>
+    <input [(ngModel)]="registerUser.firstName" name="firtsName" type="text">
+    <br>
+    <label>Last Name</label>
+    <input [(ngModel)]="registerUser.lastName"  name="lastName" type="text">
+    <br>
+    <label>Email</label>
+    <input [(ngModel)]="registerUser.email"  name="email" type="text">
+    <br>
+
+    <a (click)="firstPhase(registerUser)">Next</a>
 
 
-<form (submit)="tryRegister()">
-<label>First Name</label>
-<input [(ngModel)]="registerUser.firtsName" name="firtsName" type="text">
-<br>
-<label>Last Name</label>
-<input [(ngModel)]="registerUser.lastName"  name="lastName" type="text">
-<br>
-<label>Email</label>
-<input [(ngModel)]="registerUser.email"  name="email" type="text">
-<br>
+ </div> 
 
+ <div [hidden]="!show">
+ 
+  <fieldset>
+  <legend>Assign Permissions</legend>
 
-<fieldset >
-  <legend>Select User's Role</legend>
 
   <div>
-      <input type="radio" id="it" 
-             name="role" value="it" checked/>
-      <label for="it">IT</label>
-  </div>
-
-  <div>
-      <input type="radio" id="trader" 
-             name="role" value="trader" />
-      <label for="trader">Trader</label>
+      <label for="roles">Roles:</label>
+      <div *ngFor="let role of availableRoles">
+          <label>
+              <input type="checkbox"
+                     name="roles"
+                     [value]="role.roleId"
+                     [(ngModel)]="registerUser.roles"/>
+              {{role.name}}
+          </label>
+      </div>
   </div>
 
 </fieldset>
 <br>
 
-<button>Next</button>
+<button>Review</button>
+</div>
+
 </form>
 
 <hr>
