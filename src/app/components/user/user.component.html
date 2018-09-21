@@ -4,41 +4,26 @@
 <form (submit)="review()">
 
  <div [hidden]="show">
-    <label>First Name</label>
-    <input [(ngModel)]="registerUser.firstName" name="firtsName" type="text">
+    <label>First Name:</label>
+    <input [(ngModel)]="registerUser.firstName" name="firtsName" type="text" required>
     <br>
-    <label>Last Name</label>
-    <input [(ngModel)]="registerUser.lastName"  name="lastName" type="text">
+    <label>Last Name:</label>
+    <input [(ngModel)]="registerUser.lastName"  name="lastName" type="text" required>
     <br>
-    <label>Email</label>
-    <input [(ngModel)]="registerUser.email"  name="email" type="text">
+    <label>Email:</label>
+    <input [(ngModel)]="registerUser.email"  name="email" type="email" required>
     <br>
-
+    <br>
     <a (click)="firstPhase(registerUser)">Next</a>
 
 
  </div> 
 
  <div [hidden]="!show">
+ <h4>Assign Permissions</h4>
  
-  <fieldset>
-  <legend>Assign Permissions</legend>
+ <checkbox-group [options]="availableRoles" (toggle)="onRolesChange($event)"></checkbox-group>
 
-
-  <div>
-      <label for="roles">Roles:</label>
-      <div class="checkbox" *ngFor="let role of availableRoles">
-          <label>
-              <input type="checkbox"
-                     name="roles"
-                     [value]="role.roleId"
-                     [(ngModel)]="registerUser.roles"/>
-              {{role.name}}
-          </label>
-      </div>
-  </div>
-
-</fieldset>
 <br>
 
 <button>Review</button>

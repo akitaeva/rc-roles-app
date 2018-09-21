@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { AuthService } from './services/auth.service';
 import { UserComponent } from './components/user/user.component';
 import { ReviewComponent } from './components/review/review.component';
+import { CheckboxGroupComponent } from './components/checkbox-group/checkbox-group.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
     ReviewComponent,
+    CheckboxGroupComponent,
   ],
   imports: [
     BrowserModule,
