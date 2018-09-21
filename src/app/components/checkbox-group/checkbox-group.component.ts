@@ -14,13 +14,6 @@ export class CheckboxGroupComponent implements OnInit {
 
   constructor() { }
 
-  onToggle() {
-    const checkedOptions = this.options.filter(res => res.checked);
-    this.selectedValues = checkedOptions.map(res => res.value);
-    console.log(this.selectedValues)
-    this.toggle.emit(checkedOptions.map(res => res.value));
-   }
-
   ngOnInit() {
     this.selectedValues.forEach(value => {
       const element = this.options.find(res => res.value === value);
@@ -30,6 +23,13 @@ export class CheckboxGroupComponent implements OnInit {
      });
   }
 
+  onToggle() {
+    const checkedOptions = this.options.filter(res => res.checked);
+    this.selectedValues = checkedOptions.map(res => res.value);
+    console.log("what options are checked: ", checkedOptions)
+    console.log("what is picked: ", this.selectedValues)
+    this.toggle.emit(checkedOptions.map(res => res.value));
+   }
 
 
 

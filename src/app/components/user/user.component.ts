@@ -48,9 +48,11 @@ review() {
 }
 
 
-  ngOnInit() {
-   this.availableRoles = this.authService.getRoles()
-   .map(res => new CheckboxItem(res.id, res.name, true));
+  ngOnInit(): void {
+    setTimeout(() => {
+    this.availableRoles = this.authService.getRoles()
+   .map(res => new CheckboxItem(res.roleId, res.name));
+  }, 100);
    console.log("availableRoles:  ",  this.availableRoles)
   }
 
