@@ -22,7 +22,9 @@
  <div [hidden]="!show">
  <h4>Assign Permissions</h4>
  
- <checkbox-group [options]="availableRoles" (toggle)="onRolesChange($event)"></checkbox-group>
+ <checkbox-group [options]="availableRoles" (toggle)="onRolesChange($event)" (edit)="getUser($event)"></checkbox-group>
+
+
 
 <br>
 

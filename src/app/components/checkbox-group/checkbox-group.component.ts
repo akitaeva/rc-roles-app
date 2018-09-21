@@ -17,13 +17,17 @@ export class CheckboxGroupComponent implements OnInit {
   ngOnInit() {
     if(this.selectedValues) {
       this.selectedValues.forEach(value => {
-        const element = this.options.find(res => res.value === value);
-        if (element) {
-          element.checked = true;
-        }
-       });
+      const element = this.options.find(res => res.value === value);
+      if (element) {
+        element.checked = true;
+      }
+     });
     }
    
+  }
+
+  getUser(currentUser) {
+    console.log("what is our CURRENT USeR ", currentUser)
   }
 
   onToggle() {

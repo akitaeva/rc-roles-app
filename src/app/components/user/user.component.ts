@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms'
 import { Subscriber } from '../../../../node_modules/rxjs';
 import { Http } from '@angular/http';
 import { CheckboxGroupComponent } from '../checkbox-group/checkbox-group.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -13,6 +14,7 @@ import { CheckboxGroupComponent } from '../checkbox-group/checkbox-group.compone
 
 
 export class UserComponent implements OnInit {
+
 
 
   registerUser:any = {
@@ -28,7 +30,8 @@ export class UserComponent implements OnInit {
   tempRoles:any;
 
   constructor(private authService: AuthService,
-              private http: Http) { }
+              private http: Http,
+              private myRouter: Router) { }
 
 // tryRegister() {
 //    this.authService.register(this.registerUser)
@@ -44,17 +47,22 @@ firstPhase(userInfo){
 }
 
 review() {
-  console.log('registerUser: ', this.registerUser)
-    
+  
+  // console.log('registerUser: ', this.registerUser)
+  newUser = this.registerUser;
+  console.log('newUser -----hey hey hey: ', newUser)  
+  this.myRouter.navigate(["/review"]);
+  
 }
 
 
   ngOnInit(): void {
     setTimeout(() => {
     this.availableRoles = this.authService.getRoles()
-   .map(res => {this.tempRoles = res;
-     new CheckboxItem(this.tempRoles.roleId, this.tempRoles.name)});
-  }, 100);
+    .map(res => { 
+      this.tempRoles = res;
+      return new CheckboxItem(this.tempRoles.roleId, this.tempRoles.name)});
+    }, 100);
    console.log("availableRoles:  ",  this.availableRoles)
   }
 
@@ -63,8 +71,9 @@ review() {
     console.log('User roles:' , this.registerUser.roles);
    } 
 
-}
 
+
+}
 
 export class CheckboxItem {
   value: string;
@@ -77,3 +86,6 @@ export class CheckboxItem {
    this.checked = checked ? checked : false;
   }
  }
+
+ export let newUser;
+

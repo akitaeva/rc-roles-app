@@ -9,6 +9,20 @@ import { UserComponent } from './components/user/user.component';
 import { ReviewComponent } from './components/review/review.component';
 import { CheckboxGroupComponent } from './components/checkbox-group/checkbox-group.component';
 
+// routes:
+import {Routes, RouterModule} from '@angular/router';
+
+const routes: Routes = [
+  {
+    path:'',
+    component:UserComponent
+  },  
+  {
+    path:'review',
+    component:ReviewComponent
+  },
+]  
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +33,8 @@ import { CheckboxGroupComponent } from './components/checkbox-group/checkbox-gro
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
